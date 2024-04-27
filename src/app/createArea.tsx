@@ -6,7 +6,7 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 
 
-function CreateArea(props) {
+function CreateArea(props: { onAdd: (arg0: { title: string; content: string; }) => void; }) {
   const [note, setNote] = useState({
     title: "",
     content: "",
@@ -14,20 +14,20 @@ function CreateArea(props) {
 
   const [collapsedArea, expandedArea] = useState(false)
 
-  function handleChange (event) {
+  function handleChange (event: { target: { name: any; value: any; }; }) {
     const {name, value} = event.target;
     setNote(prevNote => {
       return {...prevNote, [name]: value}
     })
   }
 
-  function subtmitNote(event) {
+  function subtmitNote(event: { preventDefault: () => void; }) {
     props.onAdd(note);
     setNote({ title: "", content: "" });
     event.preventDefault();
   }
 
-  function expandNote(prevState) {
+  function expandNote(prevState: any) {
     expandedArea(true);
   }
 
